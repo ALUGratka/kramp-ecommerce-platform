@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: kramp-ecommerce-platform
+
+# Application configuration
+app:
+  aggregation:
+    timeout: 1000ms
+  services:
+    availability:
+      url: http://localhost:8083
+      connect-timeout: 250ms
+      read-timeout: 600ms
+    catalog:
+      url: http://localhost:8081
+      connect-timeout: 200ms
+      read-timeout: 300ms
+    customer:
+      url: http://localhost:8084
+      connect-timeout: 200ms
+      read-timeout: 300ms
+    pricing:
+      url: http://localhost:8082
+      connect-timeout: 200ms
+      read-timeout: 400ms
+  async:
+    executor-service:
+      virtualThreads: true
+      parallelism: 4
+      shutdownAwaitSeconds: 30
+
+# Metrics
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info,threaddump,prometheus
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+        product.aggregation.time: true
+        external.service.call: true
