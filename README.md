@@ -1,21 +1,16 @@
 # Kramp E-Commerce Platform - Product Aggregator
 
----
-
 Spring Boot backend service that combines data from multiple internal services into a single, market-aware response.
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Getting Started](#getting-started)
-- [API Documentation](#api-documentation)
-- [Design Decisions](#design-decisions)
-- [Trade-offs](#trade-offs)
-- [What I Would Do Differently](#what-i-would-do-differently)
-- [Design Question Answer](#design-question-answer)
-
----
+- [Overview](#-overview)
+- [Architecture](#-architecture)
+- [Getting Started](#-getting-started)
+- [API Documentation](#-api-documentation)
+- [Design Decisions](#-design-decisions)
+- [What I Would Do Differently](#-what-i-would-do-differently)
+- [Design Question Answer](#-design-question-answer)
 
 ## 🎯 Overview
 
@@ -30,8 +25,6 @@ This service aggregates product data from 4 upstream services:
 - ✅ Graceful degradation (partial responses when optional services fail)
 - ✅ Market-aware response (mock combines data from multiple markets)
 - ✅ Production-ready monitoring (micrometer metrics)
-
----
 
 ## 🏗 Architecture
 
@@ -95,8 +88,6 @@ WireMock servers userd in ``ProductAggregatorIntegrationTest`` start on 8081-808
 ### Swagger UI
 
 Available at: **http://localhost:8080/swagger-ui.html**
-
----
 
 ## 🧠 Design Decisions
 
@@ -167,9 +158,7 @@ i external.service.failures w AggregationOrchestrato
 
 **Example metric:** `http://localhost:8080/actuator/metrics/product.aggregation.time`
 
----
-
-## 🛠 What I Would Do Differently (With More Time)
+## 🛠 What I Would Do Differently
 
 ### 1. Enhanced Resilience
 
@@ -194,7 +183,6 @@ public CatalogInfo getCatalogInfo(String productId, String market) { ... }
 - Reduce load on upstream services
 - Faster response times
 
----
 
 ## 💡 Design Question Answer
 
